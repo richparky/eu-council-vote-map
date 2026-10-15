@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An open-source EU Council voting map. Build a coalition or explore official historical votes with the population figures in force at the time.">
+  <meta name="theme-color" content="#122a39">
+  <title>EU Council Vote Map</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/d3.v7.min.js" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header><div class="header-inner"><a class="brand" href="./">EU Council <strong>Vote Map</strong></a><a href="https://github.com/richparky/eu-council-vote-map" target="_blank" rel="noopener">Open source ↗</a></div></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">27 countries. Two majorities.</p><h1>See how Europe votes.</h1><p>Build a coalition, or explore the countries behind a real Council vote.</p></div><span class="edition">Official Council data</span></div>
+    <nav class="modes" aria-label="View"><button id="simulator-mode" type="button" aria-pressed="true">Coalition simulator</button><button id="history-mode" type="button" aria-pressed="false">Historical votes</button></nav>
+    <section id="history-controls" hidden aria-label="Find a historical vote">
+      <div class="filters"><label>Year<select id="year"><option value="all">All years</option></select></label><label class="search-field">Find an act<input id="search" type="search" placeholder="Try nature restoration, migration, AI…"></label></div>
+      <label>Voting record <span id="match-count"></span><select id="vote-picker" aria-describedby="record-title"></select></label>
+      <div id="record-info"><div class="record-meta" id="record-meta"></div><h2 id="record-title"></h2><p id="record-action"></p><a id="record-source" target="_blank" rel="noopener">Official source ↗</a></div>
+    </section>
+    <p id="mode-help">Click a country to add or remove its support. Each member state has one vote.</p>
+    <div id="loading" role="status">Loading the official data…</div>
+    <section id="explorer" class="explorer" hidden aria-label="Voting map and results">
+      <div class="map-column"><div class="map-shell"><svg id="map" role="img" aria-labelledby="map-title map-description"><title id="map-title">EU Council voting map</title><desc id="map-description">Interactive map of European countries. Country buttons below the map provide keyboard and touch access.</desc></svg><div id="tooltip" role="tooltip" hidden></div></div><div id="legend" class="legend" aria-label="Map legend"></div><p id="country-detail" class="country-detail" aria-live="polite">Choose a country to explore its population share.</p></div>
+      <aside class="results" aria-label="Voting results" aria-live="polite" aria-atomic="true">
+        <p class="eyebrow" id="basis-label">2026 · EU-27</p>
+        <section class="metric"><h2>Countries in favour</h2><p class="big-number" id="country-share">0.00<span>%</span></p><p id="country-count"></p><div class="meter" id="country-meter" role="progressbar" aria-label="Share of EU member states in favour" aria-valuemin="0" aria-valuemax="100"><div></div><span></span></div><p class="threshold" id="country-threshold"></p></section>
+        <section class="metric"><h2>EU population in favour</h2><p class="big-number" id="population-share">0.00<span>%</span></p><p id="population-count"></p><div class="meter" id="population-meter" role="progressbar" aria-label="Share of EU population represented by states in favour" aria-valuemin="0" aria-valuemax="100"><div></div><span></span></div><p class="threshold" id="population-threshold"></p></section>
+        <section class="decision"><p class="eyebrow" id="outcome-heading">Coalition result</p><h2 id="outcome"></h2><p id="outcome-note"></p></section>
+        <div class="basis"><p id="population-basis"></p><a id="population-source" target="_blank" rel="noopener">Population source ↗</a></div>
+        <div id="sim-actions" class="actions"><button id="clear" type="button">Clear</button><button id="all" type="button">Select all</button></div>
+      </aside>
+    </section>
+    <section id="country-section" hidden><div class="section-heading"><h2>Member states</h2><p id="table-caption">Select a country below or on the map.</p></div><div id="country-buttons" class="country-buttons"></div><details><summary>Country-by-country population and votes</summary><div class="table-wrapper"><table><thead><tr><th scope="col">Country</th><th scope="col">Vote</th><th scope="col" class="numeric">Population</th><th scope="col" class="numeric">EU share</th></tr></thead><tbody id="country-table"></tbody></table></div></details></section>
+    <details class="methodology"><summary>Data, coverage &amp; voting rules</summary><div><p id="coverage"></p><p>Population shares use the Council’s legally applicable Annex III population table on the date of each vote, rather than today’s population. The map includes the UK before its withdrawal and Croatia from its accession on 1 July 2013. The 2020 population table changes on 1 February after the UK’s withdrawal.</p><p>The two headline shares always use all EU member states and the entire EU population at that date. For a vote in which only some states participate, the legal denominator can differ. The historical view reports the Council’s recorded outcome and does not determine it from the headline shares.</p><p>The simulator uses the usual qualified-majority rule for a Commission or High Representative proposal: at least 55% of members (15 of 27) and at least 65% of population. A blocking minority must contain at least four members; with at most three non-supporting members, qualified majority is deemed attained. Percentages displayed are rounded; calculations use unrounded population counts.</p><p>Historical records can use unanimity, reinforced qualified majority, or the earlier weighted-vote system. The Lisbon double-majority system began on 1 November 2014, with a transitional option to use the old system until 31 March 2017. “Not recorded” means a member does not appear in any vote category in the source; it is not inferred to be a vote in favour or an abstention.</p><p>Some older population tables publish rounded thousands and a separately rounded EU total; both are preserved. The original 2009–2010 table has a 300-person difference between the sum of the country entries and its published total. Borders are a simplified present-day geographic reference; this is not a historical boundary atlas. Northern Cyprus is drawn separately in the source geometry and is not a separate EU member state.</p><p>Sources: <a href="https://www.consilium.europa.eu/en/general-secretariat/corporate-policies/transparency/voting-results/" target="_blank" rel="noopener">Council voting records</a> · <a href="https://www.consilium.europa.eu/en/council-eu/how-does-the-council-vote/qualified-majority/" target="_blank" rel="noopener">Council voting rules</a> · <a href="data/manifest.json">Snapshot metadata</a> · <a href="data/votes.json" download>Download votes (JSON)</a></p></div></details>
+  </main>
+  <footer>Independent, open-source project. Not affiliated with the European Union. Data: © European Union, 2026. <a href="https://github.com/richparky/eu-council-vote-map">Code &amp; data methodology ↗</a></footer>
+</body>
+</html>
