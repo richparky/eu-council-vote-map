@@ -1,7 +1,7 @@
 {
   "retrievedOn": "2026-10-15",
   "source": "https://www.consilium.europa.eu/en/general-secretariat/corporate-policies/transparency/voting-results/",
-  "records": 1748,
+  "records": 1754,
   "sourceReportedRecords": 1762,
   "sourcePages": 89,
   "earliest": "2009-12-22",
@@ -9,6 +9,6 @@
   "coverage": "All 1,762 records returned by the Council voting-results search on the retrieval date. This is not every Council decision: unpublished votes and documents available only in the separate public register are outside this snapshot.",
   "geometrySource": "https://github.com/datasets/geo-countries",
   "populationMethod": "Council Rules of Procedure Annex III in force on the vote date; exact integer counts, not sums of rounded shares.",
-  "duplicatesRemoved": 14,
+  "duplicatesRemoved": 8,
   "recordsWithUnlistedMembers": 10
 }
