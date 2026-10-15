@@ -2,13 +2,15 @@
 
 An English, open-source interactive map of voting in the **Council of the European Union**.
 
+**[Open the live map](https://richparky.github.io/eu-council-vote-map/)**
+
 Build a coalition by clicking countries, or select a real historical legislative act to see votes in favour, votes against, abstentions, and non-participating countries. Population shares use the official voting population table applicable **on the date of the vote**.
 
 ## Features
 
 - Clickable map and accessible country buttons; no account needed.
 - Current EU-27 coalition simulator using the 55% country / 65% population rule and the four-member blocking-minority rule.
-- **1,748 distinct official voting records**, dated **22 December 2009–13 October 2026**.
+- **1,754 distinct official voting records**, dated **22 December 2009–13 October 2026**.
 - Search by title, document number, interinstitutional file, or policy area; filter by year.
 - **20 population periods**: annual updates, Croatia's accession, the November 2014 rules change, and the UK withdrawal.
 - Country-by-country table, official source links, inspectable JSON, and shareable historical-vote URLs (`?vote=…`).
@@ -37,7 +39,7 @@ In the repository, open **Settings → Pages**, choose **Deploy from a branch**,
 
 ## Data provenance and coverage
 
-Snapshot retrieved on **15 October 2026** from the [official Council voting-results search](https://www.consilium.europa.eu/en/general-secretariat/corporate-policies/transparency/voting-results/). All 89 result pages and 1,762 reported source entries were read. Fourteen exact duplicate entries were removed, leaving 1,748 records. The source can list several procedural votes for the same act; distinct actions or voting distributions are retained.
+Snapshot retrieved on **15 October 2026** from the [official Council voting-results search](https://www.consilium.europa.eu/en/general-secretariat/corporate-policies/transparency/voting-results/). All 89 result pages and 1,762 reported source entries were read. Eight exact duplicate entries were removed, leaving 1,754 records. The source can list several procedural votes for the same act; distinct actions or voting distributions are retained.
 
 This is the complete **search snapshot**, not every Council decision ever made. Votes available only in the separate public register, unpublished deliberations, and later updates are not included. The older official bulk-download dataset is marked discontinued. Some titles are truncated by the source interface itself.
 
